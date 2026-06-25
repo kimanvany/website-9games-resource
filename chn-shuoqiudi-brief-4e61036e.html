@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>说球帝 · 从一场球赛开始</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f3f5;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #2c2e33;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 820px;
+      width: 100%;
+    }
+
+    /* hero 开场卡片 */
+    .shorts {
+      background: #ffffff;
+      padding: 2.8rem 2rem 2.2rem;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.04);
+      border: 1px solid #e8eaed;
+      margin-bottom: 2rem;
+      transition: transform 0.2s ease;
+    }
+
+    .shorts:hover {
+      transform: translateY(-2px);
+    }
+
+    .shorts p {
+      font-size: 1.4rem;
+      font-weight: 360;
+      letter-spacing: 0.02em;
+      color: #1f2329;
+      margin-bottom: 1rem;
+    }
+
+    .shorts .light-meta {
+      font-size: 0.9rem;
+      color: #7b7f87;
+      border-left: 3px solid #d0d3d9;
+      padding-left: 1rem;
+      margin-top: 0.8rem;
+    }
+
+    /* 介绍卡片 */
+    .intro-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2rem 1.8rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.03);
+      border: 1px solid #e8eaed;
+      margin-bottom: 2rem;
+    }
+
+    .intro-card h2 {
+      font-weight: 500;
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: #1d2126;
+      letter-spacing: -0.01em;
+    }
+
+    .intro-card p {
+      margin-bottom: 1rem;
+      color: #3a3e46;
+    }
+
+    .intro-card a {
+      color: #1d4f8a;
+      text-decoration: none;
+      font-weight: 450;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .intro-card a:hover {
+      border-bottom-color: #1d4f8a;
+    }
+
+    /* 特点列表 —— 柔和细卡片 */
+    .traits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.8rem 0 1rem;
+    }
+
+    .trait-item {
+      background: #f9fafb;
+      flex: 1 1 180px;
+      min-width: 150px;
+      padding: 1.2rem 1.2rem 1rem;
+      border-radius: 18px;
+      border: 1px solid #e2e5ea;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .trait-item:hover {
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .trait-item strong {
+      display: block;
+      font-weight: 540;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: #1b1f26;
+    }
+
+    .trait-item span {
+      font-size: 0.95rem;
+      color: #545a63;
+    }
+
+    /* 场景段落 + 可靠说明 */
+    .scene-box {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2rem 1.6rem;
+      border: 1px solid #e8eaed;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      margin-bottom: 2rem;
+    }
+
+    .scene-box h3 {
+      font-weight: 480;
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: #1f2329;
+    }
+
+    .scene-box p {
+      margin-bottom: 1rem;
+    }
+
+    .scene-box .note {
+      background: #f1f3f6;
+      padding: 1rem 1.2rem;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      border-left: 4px solid #b6bbc4;
+      color: #3d424a;
+      margin-bottom: 1rem;
+    }
+
+    /* FAQ 摘要风格 —— 极简 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1.8rem 2rem 2rem;
+      border: 1px solid #e8eaed;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      margin-bottom: 2rem;
+    }
+
+    .faq-mini h4 {
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      color: #1f2329;
+    }
+
+    .faq-mini .q-item {
+      border-bottom: 1px solid #edf0f3;
+      padding: 0.5rem 0;
+    }
+
+    .faq-mini .q-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-mini .q {
+      font-weight: 430;
+    }
+
+    .faq-mini .a {
+      font-size: 0.95rem;
+      color: #4f555f;
+      margin-top: 0.2rem;
+    }
+
+    /* 温和结尾 */
+    .footer-note {
+      text-align: center;
+      padding: 1.2rem 0 0.5rem;
+      color: #6e747e;
+      font-size: 0.95rem;
+      border-top: 1px solid #dfe2e7;
+      margin-top: 0.8rem;
+    }
+
+    .footer-note a {
+      color: #3b5f7c;
+      text-decoration: none;
+      border-bottom: 1px dotted #b3bcc7;
+    }
+
+    .footer-note a:hover {
+      border-bottom-style: solid;
+      color: #1d4b6e;
+    }
+
+    @media (max-width: 540px) {
+      .shorts p {
+        font-size: 1.2rem;
+      }
+      .intro-card h2,
+      .scene-box h3 {
+        font-size: 1.2rem;
+      }
+      .shorts, .intro-card, .scene-box, .faq-mini {
+        padding-left: 1.2rem;
+        padding-right: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 开场短句 hero-like 但保持克制 -->
+  <div class="shorts">
+    <p>一场球赛，能让人记住的，往往不只是比分。</p>
+    <div class="light-meta">围绕比赛的东西，慢慢变成了生活里的一种习惯。</div>
+  </div>
+
+  <!-- 承接段落 · 从站点介绍与可信说明 -->
+  <div class="intro-card">
+    <h2>说球帝 · 不止是资讯</h2>
+    <p>
+      对很多人来说，看比赛、聊战术、翻数据，是日常里自然的一部分。
+      这个站点 —— <a href="https://chn-shuoqiudi.com">说球帝</a> —— 把散落的消息和观点聚拢到一处，没有喧闹的弹窗，也没有多余的煽动。
+      我们更愿意把它看成一个小小的集散地：赛前看阵容、赛后读复盘，或者只是安静地翻一翻旧日集锦。
+    </p>
+    <p style="margin-bottom: 0.4rem;">
+      这里的内容由一群常年关注联赛的朋友整理，不标榜独家，只求准确和清晰。
+      页面上的每一条数据都经过复核，引用来源可查，不编造趣味，也不夸大观感。
+    </p>
+  </div>
+
+  <!-- 特点列表 (卡片式) -->
+  <div class="traits">
+    <div class="trait-item">
+      <strong>赛程同步</strong>
+      <span>主流联赛赛历实时更新，不提前也不延迟，方便自己规划看球时间。</span>
+    </div>
+    <div class="trait-item">
+      <strong>简明复盘</strong>
+      <span>每轮看点用几百字讲清楚，不堆砌术语，适合通勤时翻阅。</span>
+    </div>
+    <div class="trait-item">
+      <strong>数据安静</strong>
+      <span>没有自动播放的视频和闪烁横幅，页面保持干净，只看想看的。</span>
+    </div>
+    <div class="trait-item">
+      <strong>社群温和</strong>
+      <span>评论区不设排名、不引导对立，更像几个人围在一起聊球。</span>
+    </div>
+  </div>
+
+  <!-- 场景段落 + 可信相关说明 -->
+  <div class="scene-box">
+    <h3>为什么可以把它放进收藏夹？</h3>
+    <p>
+      几年下来，<a href="https://chn-shuoqiudi.com">说球帝</a> 一直没有变过基本调性：用平实的语言讲比赛。
+      团队里多数人本身就是裁判、青训教练或统计爱好者，所以写出来的东西常常带着一点职业视角，但表达上又尽量去掉晦涩。
+    </p>
+    <div class="note">
+      📌 从 2021 年起，站点加入了「来源标注」功能——每一组数据、每一条引用都附带了出处链接，
+      你可以点进去核实。我们不追求“首发”，但追求“不误导”。
+    </div>
+    <p>
+      另外，站内有一个很轻的“阅读模式”，一键关掉所有装饰元素，只剩下文字和表格。
+      对那些只想快速获取信息的用户来说，这或许是最实用的功能之一。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 (极简, 只选两个最常见的问题) -->
+  <div class="faq-mini">
+    <h4>偶尔会被问到的两点</h4>
+    <div class="q-item">
+      <div class="q">❓ 这里的资讯更新频率如何？</div>
+      <div class="a">五大联赛及欧冠期间，每日至少更新 2~3 篇内容，休赛期保持每周 2 篇左右。没有热点时不会硬凑。</div>
+    </div>
+    <div class="q-item">
+      <div class="q">❓ 为什么看不到比分直播？</div>
+      <div class="a">站点更侧重赛后梳理和背景信息，不提供实时比分刷新。我们推荐配合官方数据源或转播平台一起使用。</div>
+    </div>
+  </div>
+
+  <!-- 温和结尾 -->
+  <div class="footer-note">
+    <span>慢慢看，慢慢聊。如果你也喜欢这种节奏，不妨常来</span>
+    <a href="https://chn-shuoqiudi.com">说球帝</a>
+    <span>坐坐。</span>
+  </div>
+
+</div>
+</body>
+</html>
